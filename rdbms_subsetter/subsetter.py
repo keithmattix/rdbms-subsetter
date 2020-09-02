@@ -641,6 +641,7 @@ def generate():
     source = Db(args.source, args, schemas)
     target = Db(args.dest, args, schemas)
     if set(source.tables.keys()) != set(target.tables.keys()):
+        logging.debug("Source: %s; Target: %s" % (source.tables.keys(), target.tables.keys()))
         raise Exception('Source and target databases have different tables')
     source.assign_target(target)
     if source.confirm():
