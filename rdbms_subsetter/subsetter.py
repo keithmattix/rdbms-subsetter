@@ -80,7 +80,7 @@ try:
 except NameError:
     pass
 
-__version__ = '0.2.6.2'
+__version__ = '0.2.6.3'
 
 SIGNAL_ROW_ADDED = 'row_added'
 
@@ -105,7 +105,7 @@ def _find_n_rows(self, estimate=False):
         except Exception as e:
             logging.debug("failed to get approximate rowcount for %s\n%s" %
                           (self.name, str(e)))
-    if not self.n_rows:
+    if not self.n_rows or self.n_rows < 10:
         self.n_rows = self.db.conn.execute(self.count()).fetchone()[0]
 
 
